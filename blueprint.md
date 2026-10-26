@@ -124,3 +124,17 @@ Specified but not fully implemented: authenticated multi-user access, durable sh
 ## Remaining validation and next build
 
 Review this prototype with actual users by running the walkthrough, not another long questionnaire. Record differences as one consolidated change list. Recover v0.9 if available; reconcile IDs and source records. Replace examples with actual recipe and quality specifications, named permissions, batch boundaries and approved opening balances. Validate all authority gaps, amount basis, accounting mappings and external requirements. Build server-backed workflows, execute acceptance scenarios with independent users, test concurrent posting and recovery, then pilot in one store and production line before wider rollout.
+
+## Prototype update 1.1 MRS and GIN
+
+26 October 2026. MRS means Material Requisition Slip: the production request for materials against a specific job. It is not a customer return or a supplier receipt. The implemented sequence is job card → MRS → production manager approval → GIN when stores hands material to the production floor. GRN remains the supplier goods receipt in Receipts & transfers.
+
+The MRS & GIN menu provides multi-material MRS creation, approve or reject review, partial GIN posting, numbered issue-document viewing and printing, production custody, and balanced stock events. Each job card also links its MRS and GIN records. Requisitions do not move stock; approved quantities stay outstanding until actually issued. Every new extra-material issue also creates a GIN rather than silently adjusting quantities.
+
+The production operator creates an MRS with job, stage, reason, required date, purpose and material quantities. The production manager approves or rejects with a note. The stores operator chooses an approved request, a source store in the job's entity, actual quantities, issue date, production receiver and matching destination floor. G-PROD and C-PROD are explicitly hypothetical production locations, additional to the original six stores.
+
+Eligible lots are allocated using FEFO, with FIFO for explicitly expiry-exempt stock. Missing-required-expiry, expired, quality-held, recall-held, count-held and discrepancy-held quantities are excluded. The system rechecks current expiry even when the transaction date is backdated. Multi-line availability is validated before any mutation. Excess issue beyond approval, cross-entity issue, closed jobs and reused posting references are blocked.
+
+A posted GIN retains request, job, stage, entity, source store, receiving floor, production receiver, date, issuer and actual material/lot splits. Each split has an equal stores-out and production-in event. The handover preserves company physical quantity and increases identified production custody; it does not automatically record consumption. Historical example issues are not silently reconstructed as GINs. The new production-custody view is limited to handovers posted through the added GIN workflow.
+
+The update preserves existing browser-local walkthrough data while adding the new collections. These remain client-side demonstration controls, not secure authenticated or concurrent server-side postings. Technical production deployment still needs the server-backed controls described above. Corrections and returns must use separate authorised records; posted GINs are not editable through the document view.

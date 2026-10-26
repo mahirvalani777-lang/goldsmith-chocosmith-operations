@@ -61,3 +61,17 @@ In repository Settings → Pages, select **Deploy from a branch**, choose **main
 Replace demonstration access with server-enforced named identities, add a transactional database and append-only ledgers, store evidence securely, implement notification delivery and concurrent posting controls, validate recipe and quality data, reconcile migration balances, and pilot with real users before live operations.
 
 Public availability does not make this a production ERP. No software licence has been selected; publication alone does not grant an open-source licence.
+
+## MRS and GIN update
+
+Open **MRS & GIN** in the sidebar.
+
+1. **Production operator:** create a Material Requisition Slip for an open job card. Add the required materials, quantities, stage and reason.
+2. **Production manager:** review and approve the MRS. Approval itself does not change stock.
+3. **Stores operator:** create a GIN against the approved MRS. Select the issuing store, production floor and receiving person; enter actual quantities. Partial issues are allowed.
+4. Open **GIN register** to view or print the numbered issue with batch allocations.
+5. Open **Production custody** and **GIN stock events** to inspect the stores-to-floor transfer. The respective job card also shows its linked documents.
+
+**GRN** creation remains in **Receipts & transfers → Create GRN** for supplier receipts. MRS, GIN and GRN are separate records. Extra-material issues now produce GIN documents too. Existing browser data is retained; historical issues are not fabricated into new GINs.
+
+Additional verification: `node checks-issues.mjs` runs 43 MRS/GIN assertions. The existing 25 domain assertions and 30 screen/form checks also pass.

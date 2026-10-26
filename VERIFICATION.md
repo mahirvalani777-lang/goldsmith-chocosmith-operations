@@ -12,3 +12,7 @@
 The original workbook is unchanged. Hypothetical operating balances are separate from source records. Two source transfers remain unreconciled against the supplied ledger.
 
 Publication status: a private Site identity was reserved, but publication did not complete because the source repository connection failed and the environment rejected the required network escalation. The standalone HTML is the delivered working prototype; no hosted URL is claimed.
+
+## Update 1.1 verification
+
+26 October 2026: 43 MRS/GIN assertions passed, including approval before issue, multi-line partial posting, FEFO lot splitting, matching job entity and floor, issue limits, expired and held stock restrictions, duplicate posting, balanced custody events, legacy extra-material GIN creation and existing-state preservation. The original 25 business assertions and 30 screen/form rendering checks also passed. Browser verification of the deployed update is recorded separately after publication.
